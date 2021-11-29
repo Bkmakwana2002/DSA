@@ -25,23 +25,15 @@ void printNode(Node *head)
     }
 }
 
-int count(Node *head, int x)
+int List_Lenght(Node* head)
 {
-    int c = 0;
-    while (head != NULL)
+    int ll = 0;
+    while(head!=NULL)
     {
-        if (x == head->data)
-        {
-            head = head->next;
-            c++;
-        }
-
-        else
-        {
-            head = head->next;
-        }
+        head = head->next;
+        ll++;
     }
-    return c;
+    return ll;
 }
 
 int main()
@@ -52,9 +44,7 @@ int main()
         pushNode(i, &head);
     }
     printNode(head);
-    cout << endl;
-    int x;
-    cin>>x;
-    cout << count(head,x);
+    cout<<endl;
+    cout<<List_Lenght(head);
     return 0;
 }

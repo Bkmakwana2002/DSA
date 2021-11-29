@@ -25,36 +25,37 @@ void printNode(Node *head)
     }
 }
 
-int count(Node *head, int x)
+int List_Lenght(Node* head)
 {
-    int c = 0;
-    while (head != NULL)
+    int ll = 0;
+    while(head!=NULL)
     {
-        if (x == head->data)
-        {
-            head = head->next;
-            c++;
-        }
-
-        else
-        {
-            head = head->next;
-        }
+        head = head->next;
+        ll++;
     }
-    return c;
+    return ll;
+}
+
+int middleList(Node* head)
+{
+   int ll = List_Lenght(head);
+   int mll =ll/2;
+   while(mll-- && head!=NULL)
+   {
+      head = head->next;
+   }
+   return head->data;
 }
 
 int main()
 {
     Node *head = NULL;
-    for (int i = 0; i < 11; i++)
+    for (int i = 0; i < 10; i++)
     {
         pushNode(i, &head);
     }
     printNode(head);
-    cout << endl;
-    int x;
-    cin>>x;
-    cout << count(head,x);
+    cout<<endl;
+    cout<<middleList(head);
     return 0;
 }

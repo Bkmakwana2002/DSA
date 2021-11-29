@@ -16,6 +16,18 @@ Node *pushNode(int data, Node **head)
     return *head;
 }
 
+Node *DeleteLastNode(Node* head)
+{
+    Node* temp = head;
+    while(temp!=NULL)
+    {
+        temp = temp->next;
+    }
+    temp->next = NULL;
+    delete(temp);
+    return head;
+}
+
 void printNode(Node *head)
 {
     while (head != NULL)
@@ -25,36 +37,16 @@ void printNode(Node *head)
     }
 }
 
-int count(Node *head, int x)
-{
-    int c = 0;
-    while (head != NULL)
-    {
-        if (x == head->data)
-        {
-            head = head->next;
-            c++;
-        }
-
-        else
-        {
-            head = head->next;
-        }
-    }
-    return c;
-}
-
 int main()
 {
     Node *head = NULL;
     for (int i = 0; i < 11; i++)
     {
-        pushNode(i, &head);
+        head = pushNode(i, &head);
     }
     printNode(head);
-    cout << endl;
-    int x;
-    cin>>x;
-    cout << count(head,x);
+    cout<<endl;
+    head = DeleteLastNode(head);
+    printNode(head);
     return 0;
 }

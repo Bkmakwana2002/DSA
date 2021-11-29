@@ -25,23 +25,22 @@ void printNode(Node *head)
     }
 }
 
-int count(Node *head, int x)
+bool Search(Node* head, int x)
 {
-    int c = 0;
-    while (head != NULL)
+    bool ans = false;
+    while(head!=NULL)
     {
-        if (x == head->data)
+        if(head->data == x)
         {
-            head = head->next;
-            c++;
+            ans = true;
+            break;
         }
-
         else
         {
             head = head->next;
         }
     }
-    return c;
+  return ans;
 }
 
 int main()
@@ -52,9 +51,9 @@ int main()
         pushNode(i, &head);
     }
     printNode(head);
-    cout << endl;
+    cout<<endl;
     int x;
     cin>>x;
-    cout << count(head,x);
+    cout<<Search(head,x);
     return 0;
 }

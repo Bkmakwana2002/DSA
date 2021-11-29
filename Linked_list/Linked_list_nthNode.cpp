@@ -25,23 +25,14 @@ void printNode(Node *head)
     }
 }
 
-int count(Node *head, int x)
+int NthNode(Node* head, int x)
 {
-    int c = 0;
-    while (head != NULL)
+    while(head!=NULL && x>0)
     {
-        if (x == head->data)
-        {
-            head = head->next;
-            c++;
-        }
-
-        else
-        {
-            head = head->next;
-        }
+        head = head->next;
+        x--;
     }
-    return c;
+    return head->data;
 }
 
 int main()
@@ -52,9 +43,9 @@ int main()
         pushNode(i, &head);
     }
     printNode(head);
-    cout << endl;
+    cout<<endl;
     int x;
     cin>>x;
-    cout << count(head,x);
+    cout<<NthNode(head,x);
     return 0;
 }
