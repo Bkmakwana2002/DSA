@@ -1,11 +1,9 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int t[6][6];
+int t[7][6];
 
-int result = 0;
-
-int LCS(string x, string y, int n, int m)
+int min_operations(int n, int m, string x, string y)
 {
     for(int i=0; i<=n; i++)
     {
@@ -21,23 +19,22 @@ int LCS(string x, string y, int n, int m)
         {
             if(x[i-1] == y[j-1])
             {
-                t[i][j] = t[i-1][j-1] +1;
-                result = max(result,t[i][j]);
+               t[i][j] = t[i-1][j-1] + 1;
             }
-            else{
-                t[i][j] = 0;
+            else {
+                t[i][j] = max(t[i-1][j],t[i][j-1]);
             }
         }
     }
-    return result;
+    return n-t[n][m] + m-t[n][m];
 }
 
 int main()
 {
-    string x = "abcde";
-    string y = "abfce";
+    string x = "bhavya";
+    string y = "kumar";
     int n = x.length();
     int m = y.length();
-    cout << LCS(x, y, n, m);
+    cout<<min_operations(n,m,x,y);
     return 0;
 }
