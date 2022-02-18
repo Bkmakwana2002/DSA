@@ -31,7 +31,7 @@ int coinMax (int sum, int arr[], int n)
 
 int main()
 {
-    int arr[] = {1, 2, 3,};
+    int arr[] = {1, 2, 3};
     int sum = 5;
     int n = 3;
     cout<<coinMax(sum,arr,n);
