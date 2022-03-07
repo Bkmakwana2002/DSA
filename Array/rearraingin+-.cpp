@@ -1,45 +1,72 @@
+// { Driver Code Starts
 #include <bits/stdc++.h>
+
 using namespace std;
 
-void reArrange(int arr[], int n)
-{
-    int i=0;
-    int j=n-1;
-    while(i<j)
-    {
-        while(i<n && arr[i]>0)
-        {
-           i++;
-        }
-        while(j>=0 && arr[j]<0)
-        {
-           j--;
-        }
-        if(i<j)
-        {
-        swap(arr[i],arr[j]);
-        }
-    }
-    for(int k=0; k<n; k+2)
-    {
-       swap(arr[i],arr[k]);
-       i++;
-    }
-    for(int i=0; i<n; i++)
-    {
-        cout<<arr[i]<<" ";
-    }
-}
+class Solution{
+public:
 
-int main()
-{
-    int n;
-    cin>>n;
-    int arr[n];
-    for (int i = 0; i < n; i++)
-    {
-        cin>>arr[i];
+	void rearrange(int arr[], int n) {
+     vector<int> v1;
+     vector<int> v2;
+     vector<int> v;
+     for(int i=0; i<n; i++)
+	 {
+	     if(arr[i]>=0)
+	     {
+	         v1.push_back(arr[i]);
+	     }
+	 }
+	 for(int i=0; i<n; i++)
+	 {
+	     if(arr[i]<0)
+	     {
+	         v2.push_back(arr[i]);
+	     }
+	 }
+	 int x = v1.size();
+	 int y = v2.size();
+	 int p =0;
+	 int q = 0;
+	 for(int i=0; i<n; i++)
+	 {
+	    if(i%2 == 0 && x>0)
+	    {
+	       v.push_back(v1[p]);
+	       p++;
+	       x--;
+	    }
+	    else if(i%2!=0 && y>0)
+	    {
+	        v.push_back(v2[q]);
+	        q++;
+	        y--;
+	    }
+	 }
+	 for(int i=0; i<n; i++)
+	 {
+	     arr[i] = v[i];
+	 }
+	}
+};
+
+
+int main() {
+    int t;
+    cin >> t;
+    while (t--) {
+        int n, i;
+        cin >> n;
+        int arr[n];
+        for (i = 0; i < n; i++) {
+            cin >> arr[i];
+        }
+        Solution ob;
+        ob.rearrange(arr, n);
+        for (i = 0; i < n; i++) {
+            cout << arr[i] << " ";
+        }
+        cout << "\n";
     }
-    reArrange(arr,n);
     return 0;
 }
