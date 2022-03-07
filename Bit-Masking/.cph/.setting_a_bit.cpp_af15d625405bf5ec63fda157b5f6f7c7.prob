@@ -1,0 +1,1 @@
+{"name":"Local: setting_a_bit","url":"/home/bkm/Documents/DSA/Bit-Masking/setting_a_bit.cpp","tests":[{"id":1646630526759,"input":"3\n309","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/home/bkm/Documents/DSA/Bit-Masking/setting_a_bit.cpp","group":"local","local":true}

@@ -7,6 +7,6 @@ int main()
     int num;
     cin>>num;
     int mask = 1<<i;
-    cout<<(num|mask);
+    cout<<(num&~(mask));
     return 0;
 }
