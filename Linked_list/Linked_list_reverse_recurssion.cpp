@@ -1,9 +1,9 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
-struct Node{
-   int data;
-   Node* next;
+struct Node {
+  int data;
+  Node* next;
 };
 
 Node* pushNode(Node** head, int data)
@@ -15,24 +15,23 @@ Node* pushNode(Node** head, int data)
     return *head;
 }
 
-Node* reverseList(Node* head)
+Node* reverLinkedList(Node* head)
 {
-    Node* curr = head;
-    Node* prev = NULL;
-    while(curr!=NULL)
+    while(head==NULL || head->next==NULL)
     {
-        Node* temp = curr->next;
-        curr->next = prev;
-        prev = curr;
-        curr = temp;
+        return head;
     }
-    return prev;
+    Node* newHead = reverLinkedList(head->next);
+    Node* nextHead = head->next;
+    nextHead->next = head;
+    head->next = NULL;
+    return newHead;
 }
 
 void printNode(Node* head)
 {
     Node* temp = head;
-    while(temp!=NULL)
+    while(temp != NULL)
     {
         cout<<temp->data<<" ";
         temp = temp->next;
@@ -42,13 +41,13 @@ void printNode(Node* head)
 int main()
 {
     Node* head = NULL;
-    for(int i=0; i<11; i++)
+    for(int i=0; i<10; i++)
     {
-        pushNode(&head,i);
+        pushNode(&head, i);
     }
     printNode(head);
     cout<<endl;
-    head = reverseList(head);
+    head = reverLinkedList(head);
     printNode(head);
     return 0;
 }

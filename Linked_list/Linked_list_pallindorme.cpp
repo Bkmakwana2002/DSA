@@ -22,8 +22,8 @@ bool palindrome(Node *head)
     Node *temp = head;
     while (temp != NULL)
     {
-        s.push(head->data);
-        head = head->next;
+        s.push(temp->data);
+        temp = temp->next;
     }
     while (head != NULL)
     {
