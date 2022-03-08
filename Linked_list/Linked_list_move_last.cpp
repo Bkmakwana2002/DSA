@@ -28,7 +28,7 @@ void printNode(Node *head)
 Node *moveLast(Node *head)
 {
     Node *temp = head;
-    while (temp != NULL && temp->next!=NULL)
+    while (temp->next!=NULL)
     {
         swap(temp->data,temp->next->data);
         temp = temp->next;
