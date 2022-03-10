@@ -1,0 +1,1 @@
+{"name":"Local: Linked_list_removing_loop","url":"/home/bkm/Documents/DSA/Linked_list/Linked_list_removing_loop.cpp","tests":[{"id":1646805648534,"input":"3\n1 3 4\n2","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/home/bkm/Documents/DSA/Linked_list/Linked_list_removing_loop.cpp","group":"local","local":true}
