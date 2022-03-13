@@ -1,30 +1,71 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
-void insertionSort(int arr[], int n)
+void merge(int arr[], int n, int l, int mid, int r)
 {
-    int temp;
-    for(int i=1; i<n; i++)
+    int b[n];
+    int i = l;
+    int j = mid+1;
+    int k = l;
+    while (i <= mid && j <= r)
     {
-        temp = arr[i];
-        int j = i-1;
-        while(j>=0 && arr[j]>temp)
+        if (arr[i] < arr[j])
         {
-            arr[j+1] = arr[j];
-            j--;
+            b[k] = arr[i];
+            i++;
         }
-        arr[j+1] = temp;
+        else
+        {
+            b[k] = arr[j];
+            j++;
+        }
+        k++;
     }
-        for(int i=0; i<n; i++)
+    if (i > mid)
     {
-        cout<<arr[i]<<" ";
+        while (j <= r)
+        {
+            b[k] = arr[j];
+            j++;
+            k++;
+        }
+    }
+    else
+    {
+        while (i <= mid)
+        {
+            b[k] = arr[i];
+            i++;
+            k++;
+        }
+    }
+    for (k = l; k <= r; k++)
+    {
+        arr[k] = b[k];
+    }
+}
+
+void mergeSort(int arr[], int n, int l, int r)
+{
+    if (l < r)
+    {
+        int mid = (l + r) / 2;
+        mergeSort(arr, n, l, mid);
+        mergeSort(arr, n, mid + 1, r);
+        merge(arr, n, l, mid, r);
     }
 }
 
 int main()
 {
-    int arr[] = {4,3,1,5,7};
+    int arr[] = {4, 3, 1, 5, 7};
     int n = 5;
-    insertionSort(arr,n);
+    int l = 0;
+    int r = n - 1;
+    mergeSort(arr, n, l, r);
+    for(int i = 0; i < n; i++)
+    {
+        cout<<arr[i]<<" ";
+    }
     return 0;
 }
