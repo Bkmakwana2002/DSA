@@ -31,7 +31,7 @@ Node* deleteNode(Node* head)
     }
     temp->prev->next = NULL;
     temp->prev = NULL;
-    free(temp);
+    free(temp); 
     return head;
 }
 
