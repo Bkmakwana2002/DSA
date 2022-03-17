@@ -59,6 +59,7 @@ int main()
         {
             cout << v[i][j] << " ";
         }
+        cout<<endl;
     }
     return 0;
 }
