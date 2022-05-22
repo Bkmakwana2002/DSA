@@ -5,7 +5,7 @@ void merge(int arr[], int n, int l, int mid, int r)
 {
     int b[n];
     int i = l;
-    int j = mid+1;
+    int j = mid + 1;
     int k = l;
     while (i <= mid && j <= r)
     {
@@ -63,9 +63,9 @@ int main()
     int l = 0;
     int r = n - 1;
     mergeSort(arr, n, l, r);
-    for(int i = 0; i < n; i++)
+    for (int i = 0; i < n; i++)
     {
-        cout<<arr[i]<<" ";
+        cout << arr[i] << " ";
     }
     return 0;
 }
