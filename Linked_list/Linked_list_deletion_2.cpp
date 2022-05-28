@@ -16,15 +16,15 @@ Node *pushNode(int data, Node **head)
     return *head;
 }
 
-Node *DeleteLastNode(Node* head)
+Node *DeleteLastNode(Node *head)
 {
-    Node* temp = head;
-    while(temp!=NULL)
+    Node *temp = head;
+    while (temp->next->next != NULL)
     {
         temp = temp->next;
     }
+    delete (temp->next);
     temp->next = NULL;
-    delete(temp);
     return head;
 }
 
@@ -45,7 +45,7 @@ int main()
         head = pushNode(i, &head);
     }
     printNode(head);
-    cout<<endl;
+    cout << endl;
     head = DeleteLastNode(head);
     printNode(head);
     return 0;

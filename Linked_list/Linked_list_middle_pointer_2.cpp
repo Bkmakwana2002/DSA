@@ -17,7 +17,7 @@ Node* pushNode(Node** head, int data)
 
 Node* reverLinkedList(Node* head)
 {
-    Node* fastPointer = head->next;
+    Node* fastPointer = head;
     Node* slowPointer = head;
     while(fastPointer!=NULL && fastPointer->next!=NULL)
     {
@@ -40,7 +40,7 @@ void printNode(Node* head)
 int main()
 {
     Node* head = NULL;
-    for(int i=1; i<7; i++)
+    for(int i=1; i<8; i++)
     {
         pushNode(&head, i);
     }

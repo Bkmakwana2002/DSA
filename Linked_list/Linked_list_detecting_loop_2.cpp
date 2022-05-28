@@ -6,7 +6,7 @@ using namespace std;
 struct Node {
   int data;
   Node* next;
-  int flag;
+  int flag = 0;
 };
 
 Node* push(Node** head, int data)

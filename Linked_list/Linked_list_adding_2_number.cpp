@@ -1,147 +1,77 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-struct Node {
+struct Node
+{
     int data;
-    struct Node* next;
-    Node(int x) {
+    Node* next;
+    Node(int x)
+    {
         data = x;
         next = NULL;
     }
 };
 
-struct Node* buildList(int size)
+Node* pushNode(Node** head,int data)
 {
-    int val;
-    cin>> val;
-    
-    Node* head = new Node(val);
-    Node* tail = head;
-    
-    for(int i=0; i<size-1; i++)
-    {
-        cin>> val;
-        tail->next = new Node(val);
-        tail = tail->next;
-    }
-    
-    return head;
+    Node* newNode = new Node(data);
+    newNode->next = *head;
+    *head = newNode;
+    return newNode;
 }
 
-void printList(Node* n)
+Node* addTwoNumbers(Node* head1, Node* head2)
 {
-    while(n)
+    int carry = 0;
+    Node* dummy = new Node(-1);
+    Node* temp = dummy;
+    while(head1!=NULL || head2!=NULL || carry)
     {
-        cout<< n->data << " ";
-        n = n->next;
+        int sum = 0;
+        if(head1!=NULL)
+        {
+            sum += head1->data;
+            head1 = head1->next;
+        }
+        if(head2!=NULL)
+        {
+            sum += head2->data;
+            head2 = head2->next;
+        }
+        sum += carry;
+        carry = sum/10;
+        Node* newNode = new Node(sum%10);
+        temp->next = newNode;
+        temp = temp->next;
     }
-    cout<< endl;
+    return dummy->next;
 }
 
-
-class Solution
+void printNode(Node* head)
 {
-    public:
-    
-    Node* reverse(Node* head)
+    while(head!=NULL)
     {
-        Node* curr = head;
-        Node* prev = NULL;
-        while(curr!=NULL)
-        {
-            Node* temp = curr->next;
-            curr->next = prev;
-            prev = curr;
-            curr = temp;
-        }
-        return prev;
+       cout<<head->data<<" ";
+       head = head->next;
     }
-    
-    void insertAtEnd(Node* &head,Node* &tail, int data)
-    {
-        Node* temp = new Node(data);
-        if(head == NULL)
-        {
-            head = temp;
-            tail = temp;
-            return;
-        }
-        else{
-            tail->next = temp;
-            tail = temp;
-        }
-    }
-    
-    Node* add(Node* first,Node* second)
-    {
-        int carry = 0;
-        Node* ansHead = NULL;
-        Node* ansTail = NULL;
-        while(first!=NULL && second!=NULL)
-        {
-            int sum = first->data + second->data + carry;
-            int digit = sum%10;
-            insertAtEnd(ansHead,ansTail,digit);
-            carry = sum/10;
-            first = first->next;
-            second = second->next;
-        }
-        
-        while(first!=NULL)
-        {
-            int sum = first->data + carry;
-            int digit = sum%10;
-            insertAtEnd(ansHead,ansTail,digit);
-            carry = sum/10; 
-            first = first->next;
-        }
-        while(second!=NULL)
-        {
-            int sum = second->data + carry;
-            int digit = sum%10;
-            insertAtEnd(ansHead,ansTail,digit);
-            carry = sum/10; 
-            second = second->next;
-        }
-        while(carry>0)
-        {
-            int sum = carry;
-            int digit = sum%10;
-            insertAtEnd(ansHead,ansTail,digit);
-            carry = sum/10; 
-        }
-        return ansHead;
-    }
-
-    struct Node* addTwoLists(struct Node* first, struct Node* second)
-    {
-       first = reverse(first);
-       second = reverse(second);
-       
-       Node* ans = add(first,second);
-       
-       ans = reverse(ans);
-       return ans;
-    }
-};
-
+}
 
 int main()
 {
-    int t;
-    cin>>t;
-    while(t--)
+    Node* head1 = NULL;
+    Node* head2 = NULL;
+    for(int i=0; i<5; i++)
     {
-        int n, m;
-        
-        cin>>n;
-        Node* first = buildList(n);
-        
-        cin>>m;
-        Node* second = buildList(m);
-        Solution ob;
-        Node* res = ob.addTwoLists(first,second);
-        printList(res);
+        pushNode(&head1,i);
     }
-    return 0;
+    for(int i=5; i<9; i++)
+    {
+        pushNode(&head2,i);
+    }
+    printNode(head1);
+    cout<<endl;
+    printNode(head2);
+    cout<<endl;
+    Node* node = addTwoNumbers(head1,head2);
+    printNode(node);
 }

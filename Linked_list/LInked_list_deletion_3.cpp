@@ -34,7 +34,7 @@ void printNode(Node *head)
     Node* temp = head;
     while(temp!=NULL)
     {
-        cout<<temp->next<<" ";
+        cout<<temp->data<<" ";
         temp = temp->next;
     }
 }
