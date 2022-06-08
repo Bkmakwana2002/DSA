@@ -1,4 +1,3 @@
-// to do later
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -17,37 +16,40 @@ struct treeNode
 
 vector<vector<int>> veticalTraversal(treeNode* root)
 {
-   queue<pair<treeNode*,pair<int,int>>> q;
-   map<int,map<int,multiset<int>>> m;
-   q.push({root,{0,0}});
-   while(!q.empty())
-   {
-       auto p = q.front();
-       q.pop();
-       treeNode* node = p.first;
-       int x = p.second.first;
-       int y = p.second.first;
-       m[x][y].insert(node->data);
-       if(node->left)
-       {
-           q.push({node->left,{x-1,y+1}});
-       }
-       if(node->right)
-       {
-           q.push({node->left,{x+1,y+1}});
-       }
-   }
-   vector<vector<int>> ans;
-   for(auto p : m)
-   {
-       vector<int> col;
-       for(auto q : p.second)
-       {
-           col.insert(col.end(),q.second.begin(),q.second.end());
-       }
-       ans.push_back(col);
-   }
-   return ans;
+  queue<pair<treeNode*,pair<int,int>>> q;
+  map<int,map<int,multiset<int>>> m;
+  q.push({root,{0,0}});
+  while(!q.empty())
+  {
+      auto p = q.front();
+      q.pop();
+      treeNode* temp = p.first;
+      int vertical = p.second.first;
+      int level = p.second.second;
+      m[vertical][level].insert(temp->data);
+      if(temp->left != NULL)
+      {
+         q.push({temp->left,{vertical-1,level+1}});
+      }
+      if(temp->right != NULL)
+      {
+          q.push({temp->right,{vertical+1,level+1}});
+      }
+  }
+  vector<vector<int>> ans;
+  for(auto it = m.begin(); it!=m.end(); it++)
+  {
+      vector<int> v;
+      for(auto it1 = it->second.begin(); it1!= it->second.end(); it1++)
+      {
+        for(auto it2 = it1->second.begin(); it2!=it1->second.end(); it2++)
+        {
+            v.push_back(*it2);
+        }
+      }
+      ans.push_back(v);
+  }
+  return ans;
 }
 
 int main()

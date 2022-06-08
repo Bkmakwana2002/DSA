@@ -16,16 +16,23 @@ struct treeNode
     }
 };
 
-int maxSumPath(treeNode* root)
+int maxSumPath(treeNode *root, int &maxSum)
 {
-    if(root == NULL)
+    if (root == NULL)
     {
         return 0;
     }
-    int leftSum = maxSumPath(root->left);
-    int rightSum = maxSumPath(root->right);
-    maxSum = max(root->data+leftSum+rightSum,maxSum);
-    return root->data + max(leftSum,rightSum);
+    int leftSum = maxSumPath(root->left, maxSum);
+    int rightSum = maxSumPath(root->right, maxSum);
+    maxSum = max(root->data + leftSum + rightSum, maxSum);
+    return root->data + max(leftSum, rightSum);
+}
+
+int maxi(treeNode *root)
+{
+    int maxSum = INT_MIN;
+    maxSumPath(root, maxSum);
+    return maxSum;
 }
 
 int main()
@@ -34,6 +41,6 @@ int main()
     root->left = new treeNode(2);
     root->right = new treeNode(3);
     root->left->right = new treeNode(8);
-    cout << maxSumPath(root);
+    cout << maxi(root);
     return 0;
 }

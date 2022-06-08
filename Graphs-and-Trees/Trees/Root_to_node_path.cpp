@@ -14,18 +14,18 @@ struct treeNode
     }
 };
 
-bool getPath(treeNode* root,int data,vector<int> &ans)
+bool getPath(treeNode *root, int data, vector<int> &ans)
 {
-    if(root == NULL)
+    if (root == NULL)
     {
         return false;
     }
-    if(root->data == data)
+    ans.push_back(root->data);
+    if (root->data == data)
     {
-        ans.push_back(root->data);
         return true;
     }
-    if(getPath(root->left,data,ans) || getPath(root->right,data,ans))
+    if (getPath(root->left, data, ans) || getPath(root->right, data, ans))
     {
         return true;
     }
@@ -33,7 +33,7 @@ bool getPath(treeNode* root,int data,vector<int> &ans)
     return false;
 }
 
-vector<int> returnPath(treeNode* root, int x)
+vector<int> returnPath(treeNode *root, int x)
 {
     vector<int> ans;
     getPath(root, x, ans);
@@ -42,15 +42,15 @@ vector<int> returnPath(treeNode* root, int x)
 
 int main()
 {
-    treeNode* root = new treeNode(1);
+    treeNode *root = new treeNode(1);
     root->left = new treeNode(2);
     root->right = new treeNode(2);
     root->left->left = new treeNode(3);
     root->left->right = new treeNode(4);
     root->right->left = new treeNode(4);
     root->right->right = new treeNode(3);
-    vector<int> ans = returnPath(root,3);
-    for(int i = 0; i < ans.size(); i++)
+    vector<int> ans = returnPath(root, 3);
+    for (int i = 0; i < ans.size(); i++)
     {
         cout << ans[i] << " ";
     }
