@@ -3,31 +3,31 @@ using namespace std;
 
 bool t[5][23];
 
-bool subSetSum(int arr[], int n,int S)
+bool subSetSum(int arr[], int n,int sum)
 {
-   for (int i = 0; i < 5; i++)
+  for (int i = 1; i < sum+1; i++)
     {
-        for (int j = 0; j < 23; j++)
+        t[0][i] = false;
+    }
+    for (int i = 0; i < n+1; i++)
+    {
+        t[i][0] = true;
+    }
+    for (int i = 1; i < n+1; i++)
+    {
+        for (int j = 1; j < sum+1; j++)
         {
-            if (i == 0)
-            {
-                t[i][j] = false;
-            }
-            if (j == 0)
-            {
-                t[i][j] = true;
-            }
-            else if (j >= arr[i - 1])
-            {
-                t[i][j] = (t[i - 1][j - arr[i - 1]] || t[i - 1][j]);
-            }
-            else
+            if (j < arr[i - 1])
             {
                 t[i][j] = t[i - 1][j];
             }
+            if (j >= arr[i - 1])
+            {
+                t[i][j] = (t[i - 1][j - arr[i - 1]] || t[i - 1][j]);
+            }
         }
     }
-    return t[n][S];
+    return t[n][sum];
 }
 
 bool equalSum(int arr[],int n, int sum)

@@ -1,29 +1,30 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-bool t[6][12];
+bool t[7][31];
 
 bool subSetSum(int sum, int arr[], int n)
 {
-    for (int i = 0; i < 6; i++)
+
+    for (int i = 1; i < 31; i++)
     {
-        for (int j = 0; j < 12; j++)
+        t[0][i] = false;
+    }
+    for (int i = 0; i < 7; i++)
+    {
+        t[i][0] = true;
+    }
+    for (int i = 1; i < 7; i++)
+    {
+        for (int j = 1; j < 31; j++)
         {
-            if (i == 0)
-            {
-                t[i][j] = false;
-            }
-            if (j == 0)
-            {
-                t[i][j] = true;
-            }
-            else if (j >= arr[i - 1])
-            {
-                t[i][j] = (t[i - 1][j - arr[i - 1]] || t[i - 1][j]);
-            }
-            else
+            if (j < arr[i - 1])
             {
                 t[i][j] = t[i - 1][j];
+            }
+            if (j >= arr[i - 1])
+            {
+                t[i][j] = (t[i - 1][j - arr[i - 1]] || t[i - 1][j]);
             }
         }
     }
@@ -32,9 +33,9 @@ bool subSetSum(int sum, int arr[], int n)
 
 int main()
 {
-    int arr[] = {2, 3, 7, 8, 10};
-    int sum = 11;
-    int n = 5;
+    int arr[] = {3, 34, 4, 12, 5, 2};
+    int sum = 30;
+    int n = 6;
     cout << subSetSum(sum, arr, n);
     return 0;
 }

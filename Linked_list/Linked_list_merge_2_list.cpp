@@ -76,14 +76,13 @@ int main()
 {
     Node* first = NULL;
     Node* second = NULL;
-    for (int i = 0; i < 11; i++)
-    {
-        first = pushNode(i, &first);
-    }
-    for (int i = 11; i < 22; i++)
-    {
-        second = pushNode(i, &second);
-    }
+    first = pushNode(1, &first);
+    first = pushNode(4, &first);
+    first = pushNode(5, &first);
+    
+    second = pushNode(2, &second);
+    second = pushNode(3, &second);
+    second = pushNode(6, &second);
     mergeList(first, second);
     printNode(first);
 }

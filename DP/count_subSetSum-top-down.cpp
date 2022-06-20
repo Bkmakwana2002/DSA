@@ -15,7 +15,7 @@ int countsubSetSum(int sum, int arr[], int n)
     }
     for(int i=1; i<6; i++)
     {
-        for(int j=1; j<11; j++)
+        for(int j=0; j<11; j++)
         {
             if(arr[i-1]<=j)
             {
