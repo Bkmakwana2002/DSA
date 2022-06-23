@@ -1,0 +1,41 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int solve(vector<int> &nums, int n, vector<int> &dp)
+{
+    if(n == 0)
+    {
+        return nums[0];
+    }
+    if(n<0)
+    {
+        return 0;
+    }
+    if(dp[n] != -1)
+    {
+        return dp[n];
+    }
+    int pick = solve(nums,n-2,dp) + nums[n];
+    int notPick = solve(nums,n-1,dp);
+    return dp[n] = max(pick,notPick);
+}
+
+int maximumNonAdjacentSum(vector<int> &nums){
+    int n = nums.size();
+    vector<int> dp(n+1,-1);
+    return solve(nums,n-1,dp);
+}
+
+int main()
+{
+    int n;
+    cin>>n;
+    vector<int> v;
+    for(int i=0; i<n; i++)
+    {
+        int x;
+        cin>>x;
+        v.push_back(x);
+    }
+    cout<<maximumNonAdjacentSum(v);
+}

@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int t[4][101];
+int t[3][4];
 
 int knapSack(int W, int wt[], int val[], int n)
 {
@@ -25,10 +25,10 @@ int knapSack(int W, int wt[], int val[], int n)
 
 int main()
 {
-    int val[] = {10, 30, 20};
-    int wt[] = {5, 10, 15};
-    int W = 100;
-    int n = 3;
+    int val[] = {1,1};
+    int wt[] = {2,1};
+    int W = 3;
+    int n = 2;
     cout << knapSack(W, wt, val, n);
     return 0;
 }

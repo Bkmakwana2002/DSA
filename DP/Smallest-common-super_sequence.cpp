@@ -31,8 +31,8 @@ int ans(int n, int m, string x, string y)
 
 int main()
 {
-    string x = "acbef";
-    string y = "abcdaf";
+    string x = "nablhvsjmriftxjrlhnszricvabvwibl";
+    string y = "jeysbrenimubjfvwmionbypwysuwbxkm";
     int n = x.length();
     int m = y.length();
     cout<<ans(n,m,x,y);
