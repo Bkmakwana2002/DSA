@@ -5,7 +5,7 @@ int t[6][11];
 
 int countsubSetSum(int sum, int arr[], int n)
 {
-    for(int j=0 ; j<6; j++)
+    for(int j=0 ; j<11; j++)
     {
        t[0][j] = 0;
     }
