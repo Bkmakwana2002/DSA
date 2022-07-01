@@ -9,10 +9,7 @@ int countsubSetSum(int sum, int arr[], int n)
     {
        t[0][j] = 0;
     }
-    for(int i=0 ; i<6; i++)
-    {
-       t[i][0] = 1;
-    }
+    t[0][0] = 1;
     for(int i=1; i<6; i++)
     {
         for(int j=0; j<11; j++)
