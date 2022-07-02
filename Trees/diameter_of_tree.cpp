@@ -14,7 +14,7 @@ struct treeNode
     }
 };
 
-int height(treeNode *root,int &d)
+int height(treeNode *root, int &d)
 {
     if (root == NULL)
     {
@@ -22,8 +22,8 @@ int height(treeNode *root,int &d)
     }
     int lh = height(root->left, d);
     int rh = height(root->right, d);
-    d = max(d, lh + rh);
-    return 1 + max(lh,rh);
+    d = max(d, lh + rh + 1);
+    return 1 + max(lh, rh);
 }
 
 int diameter(treeNode *root)
