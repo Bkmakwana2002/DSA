@@ -26,7 +26,7 @@ int changeDigit(treeNode* root, int compare)
 
 void changeTree(treeNode* root)
 {
-   cout<< changeDigit(root,1);
+   cout<< changeDigit(root,0);
 }
 
 int main()
