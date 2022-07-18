@@ -1,4 +1,4 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -8,29 +8,21 @@ class Solution
 public:
     // Function to detect cycle in an undirected graph.
 
-    bool check(int i, int n, vector<int> adj[], vector<bool> &vis)
+    bool dfs(int n, vector<int> adj[], vector<bool> &vis, int i, int par)
     {
-        queue<pair<int, int>> q;
-        q.push({i, -1});
         vis[i] = true;
-        while (!q.empty())
+        for (auto x : adj[i])
         {
-            int index = q.front().first;
-            int par = q.front().second;
-            q.pop();
-            for (auto it : adj[index])
+            if (vis[x] == false)
             {
-                if (!vis[it])
+                if (dfs(n, adj, vis, x, i))
                 {
-                    q.push({it, index});
+                    return true;
                 }
-                else
-                {
-                    if (par != it)
-                    {
-                        return true;
-                    }
-                }
+            }
+            else if (x != par)
+            {
+                return true;
             }
         }
         return false;
@@ -40,11 +32,11 @@ public:
     {
         // Code here
         vector<bool> vis(V, false);
-        for (int i = 0; i <= V; i++)
+        for (int i = 0; i < V; i++)
         {
-            if (!vis[i])
+            if (vis[i] == false)
             {
-                if (check(i, V, adj, vis))
+                if (dfs(V, adj, vis, i, -1))
                 {
                     return true;
                 }
@@ -54,7 +46,7 @@ public:
     }
 };
 
-// { Driver Code Starts.
+//{ Driver Code Starts.
 int main()
 {
     int tc;
@@ -79,4 +71,5 @@ int main()
             cout << "0\n";
     }
     return 0;
-} // } Driver Code Ends
+}
+// } Driver Code Ends
