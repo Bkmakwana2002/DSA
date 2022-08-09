@@ -1,46 +1,44 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
- // } Driver Code Ends
+// } Driver Code Ends
 class Solution
 {
-    public:
-    //Function to count number of ways to reach the nth stair.
-    int m = 1e9+7;
-
+public:
+    // Function to count number of ways to reach the nth stair.
     int countWays(int n)
     {
         // your code here
-        vector<int> dp(n+1,-1);
+        int mod = 1000000007;
+        vector<int> dp(n + 1, 0);
         dp[0] = 1;
-        for(int i=1; i<n+1; i++)
+        for (int i = 1; i < n + 1; i++)
         {
-            int y = 0;
-            if(i-2>=0)
+            int oneStep = dp[i - 1];
+            int secondStep = 0;
+            if (n >= 2)
             {
-                y = (dp[i-2]+y)%m;
+                secondStep = dp[i - 2];
             }
-            dp[i] = (dp[i-1]+dp[i-2])%m;
+            dp[i] = (oneStep + secondStep) % mod;
         }
         return dp[n];
     }
 };
 
-
-
 // { Driver Code Starts.
 int main()
 {
-    //taking total testcases
+    // taking total testcases
     int t;
     cin >> t;
-    while(t--)
+    while (t--)
     {
-        //taking stair count
+        // taking stair count
         int m;
-        cin>>m;
+        cin >> m;
         Solution ob;
-        cout<<ob.countWays(m)<<endl; // Print the output from our pre computed array
+        cout << ob.countWays(m) << endl; // Print the output from our pre computed array
     }
     return 0;
 }
