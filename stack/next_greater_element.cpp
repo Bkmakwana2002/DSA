@@ -5,20 +5,14 @@ vector<int> nextGreaterElement(int arr[], int n)
 {
     vector<int> ans(n,-1);
     stack<int> s;
-    for(int i=n-1; i>=0; i--)
+    for(int i=0; i<n; i++)
     {
-        while(!s.empty() && s.top()<=arr[i])
+        if(!s.empty() && arr[s.top()] < arr[i])
         {
+            ans[s.top()] = arr[i];
             s.pop();
         }
-        if(i<n)
-        {
-            if(!s.empty())
-            {
-                ans[i] = s.top();
-            }
-        }
-        s.push(arr[i]);
+        s.push(i);
     }
     return ans;
 }
